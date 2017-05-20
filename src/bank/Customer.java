@@ -8,15 +8,21 @@ public class Customer implements Serializable {
 
     private String name;
     private String lastname;
+    private String pesel;
     private ArrayList<Card> cards = new ArrayList<>();
 
     public Customer() {
 
     }
 
-    public Customer(String name, String lastname) {
+    public Customer(String name, String lastname, String pesel) {
         this.name = name;
         this.lastname = lastname;
+        this.pesel = pesel;
+    }
+
+    public String getPesel() {
+        return pesel;
     }
 
     public String getName() {
