@@ -46,6 +46,8 @@ fabric.properties
 ### Java template
 # Compiled class file
 *.class
+*.uml
+
 
 # Log file
 *.log
