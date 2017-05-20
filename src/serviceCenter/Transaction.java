@@ -1,32 +1,33 @@
 package serviceCenter;
 
 
-import bank.Card;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
-public class Transaction  implements Serializable {
+public class Transaction implements Serializable {
 
     private BigDecimal requestedMoney;
-    private boolean isPaymentRealised;
     private GregorianCalendar date;
+    private RecipientOfService requester;
 
-    public Transaction() {
+    public RecipientOfService getRequester() {
+        return requester;
     }
 
-    public Transaction(BigDecimal requestedMoney) {
-        this.requestedMoney = requestedMoney;
-        this.date = new GregorianCalendar();
+    public GregorianCalendar getDate() {
+        return date;
     }
 
-    public boolean isPaymentRealised() {
-        return isPaymentRealised;
+    public String getFormattedDateAndTime() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        return dateFormat.format(date);
     }
 
-    public void setPaymentRealised(boolean paymentRealised) {
-        isPaymentRealised = paymentRealised;
+    public void setDate(GregorianCalendar date) {
+        this.date = date;
     }
 
     public BigDecimal getRequestedMoney() {
@@ -37,4 +38,12 @@ public class Transaction  implements Serializable {
         this.requestedMoney = requestedMoney;
     }
 
+    public Transaction() {
+    }
+
+    public Transaction(BigDecimal requestedMoney, RecipientOfService requester) {
+        this.requestedMoney = requestedMoney;
+        this.requester = requester;
+        this.date = new GregorianCalendar();
+    }
 }

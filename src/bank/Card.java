@@ -1,6 +1,7 @@
 package bank;
 
 import exceptions.FundsException;
+import serviceCenter.RecipientOfService;
 import serviceCenter.Transaction;
 
 import java.io.Serializable;
@@ -9,8 +10,18 @@ import java.util.ArrayList;
 
 public abstract class Card implements Serializable {
 
-    protected String number;
-    private ArrayList<Transaction> transactions = new ArrayList<Transaction>();
+    private int cardNumber;
+    private static int nextCardCumber = 1000;
+    private ArrayList<Transaction> transactions = new ArrayList<>();
+
+    public int getCardNumber() {
+        return cardNumber;
+    }
+
+    public Card(int prefix) {
+        cardNumber = Integer.parseInt(prefix + "" + nextCardCumber);
+        nextCardCumber++;
+    }
 
     public ArrayList<Transaction> getTransactions() {
         return transactions;
@@ -20,5 +31,5 @@ public abstract class Card implements Serializable {
         transactions.add(transaction);
     }
 
-    public abstract void charge(BigDecimal amount) throws FundsException;
+    public abstract void charge(BigDecimal amount, RecipientOfService requester) throws FundsException;
 }

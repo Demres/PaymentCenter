@@ -2,6 +2,7 @@ package bank;
 
 
 import exceptions.AccountBalanceException;
+import serviceCenter.RecipientOfService;
 import serviceCenter.Transaction;
 
 import java.io.Serializable;
@@ -12,29 +13,25 @@ public class DebitCard extends Card implements Serializable {
 
     private Account account;
 
-    public DebitCard(Locale locale) {
+    public DebitCard(Locale locale, int prefix) {
+        super(prefix);
         account = new Account(locale);
-        number = "1234";
     }
 
-    public DebitCard() {
-        this(new Locale("pl_PL"));
+    public DebitCard(int prefix) {
+        this(new Locale("pl_PL"), prefix);
     }
 
     @Override
-    public void charge(BigDecimal amount) throws AccountBalanceException {
-        Transaction transaction = new Transaction(amount);
+    public void charge(BigDecimal amount, RecipientOfService requester) throws AccountBalanceException {
+        Transaction transaction = new Transaction(amount, requester);
 
         try {
             account.charge(amount);
         }
         catch (AccountBalanceException e) {
-            transaction.setPaymentRealised(false);
-            addTransaction(transaction);
             throw e;
         }
-
-        transaction.setPaymentRealised(true);
         addTransaction(transaction);
     }
 

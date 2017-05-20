@@ -2,6 +2,7 @@ package bank;
 
 
 import exceptions.LoanLimitException;
+import serviceCenter.RecipientOfService;
 import serviceCenter.Transaction;
 
 import java.io.Serializable;
@@ -12,7 +13,8 @@ public class CreditCard extends Card implements Serializable {
 
     private Loan loan;
 
-    public CreditCard(Locale locale) {
+    public CreditCard(Locale locale, int prefix) {
+        super(prefix);
         loan = new Loan(locale, new BigDecimal(5000));
     }
 
@@ -21,19 +23,15 @@ public class CreditCard extends Card implements Serializable {
     }
 
     @Override
-    public void charge(BigDecimal amount) throws LoanLimitException {
-        Transaction transaction = new Transaction(amount);
+    public void charge(BigDecimal amount, RecipientOfService requester) throws LoanLimitException {
+        Transaction transaction = new Transaction(amount, requester);
 
         try {
             loan.charge(amount);
         }
         catch (LoanLimitException e) {
-            transaction.setPaymentRealised(false);
-            addTransaction(transaction);
             throw e;
         }
-
-        transaction.setPaymentRealised(true);
         addTransaction(transaction);
     }
 
