@@ -33,12 +33,12 @@ public class Loan implements Serializable {
     }
 
     public void charge(BigDecimal money) throws LoanLimitException {
-        BigDecimal difference = new BigDecimal(loan.toString()).subtract(balance);
+        BigDecimal difference = loan.subtract(balance);
         if (money.compareTo(difference) > 0)
             throw new LoanLimitException("Requested money exceeds available founds "
                     + difference.toString() + currency.getCurrencyCode());
 
-        balance.add(money);
+        balance = balance.add(money);
     }
 
     public String getBalanceWithCurrency() {
