@@ -15,19 +15,22 @@ public class ServiceCenter {
         return banks;
     }
 
-    public void setBanks(ArrayList<Bank> banks) {
-        this.banks = banks;
+    public void addBank(Bank bank) {
+        banks.add(bank);
     }
 
     public ArrayList<RecipientOfService> getRecipients() {
         return recipients;
     }
 
-    public void setRecipients(ArrayList<RecipientOfService> recipients) {
-        this.recipients = recipients;
+    public void addRecipient(RecipientOfService recipient) {
+        recipients.add(recipient);
     }
 
     public void chargeCard(int cardNumber, BigDecimal amount, RecipientOfService requester) {}
 
+    public void createCustomer() {}
+
+    public void createCard() {}
 
 }
