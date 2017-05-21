@@ -34,10 +34,6 @@ public class Transaction implements Serializable {
         return requestedMoney;
     }
 
-    public void setRequestedMoney(BigDecimal requestedMoney) {
-        this.requestedMoney = requestedMoney;
-    }
-
     public Transaction() {
     }
 
