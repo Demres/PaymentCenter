@@ -52,11 +52,8 @@ public class Bank {
 
     private Card findCard(int cardNumber) {
         for (Customer customer : customers) {
-            for (Card card : customer.getCards()) {
-                if (card.getCardNumber() == cardNumber) {
-                    return card;
-                }
-            }
+            for (Card card : customer.getCards())
+                if (card.getCardNumber() == cardNumber) return card;
         }
 
         return null;

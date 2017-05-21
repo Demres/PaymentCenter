@@ -35,7 +35,7 @@ public class Main {
         FileOutputStream fout = new FileOutputStream("/home/kamil/Projects/Java/CardServiceCenter/object.ser");
         ObjectOutputStream oos = new ObjectOutputStream(fout);
         oos.writeObject(customer);
-        */
+
 
         FileInputStream fin = new FileInputStream("/home/kamil/Projects/Java/CardServiceCenter/object.ser");
         ObjectInputStream ois = new ObjectInputStream(fin);
@@ -51,6 +51,7 @@ public class Main {
         catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        */
 
     }
 }
