@@ -16,6 +16,10 @@ public class Bank {
     private ArrayList<Customer> customers = new ArrayList<>();
     private static int nextBankPrefix = 1000;
 
+    public int getBankPrefix() {
+        return bankPrefix;
+    }
+
     public String getName() {
         return name;
     }
@@ -50,7 +54,7 @@ public class Bank {
         }
     }
 
-    private Card findCard(int cardNumber) {
+    public Card findCard(int cardNumber) {
         for (Customer customer : customers) {
             for (Card card : customer.getCards())
                 if (card.getCardNumber() == cardNumber) return card;

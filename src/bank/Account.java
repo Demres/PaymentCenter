@@ -5,21 +5,14 @@ import exceptions.AccountBalanceException;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.MathContext;
-import java.util.Currency;
-import java.util.Locale;
 
 public class Account implements Serializable {
 
     private BigDecimal balance;
     private Currency currency;
 
-    public Account() {
-        this(new Locale("pl_PL"));
-    }
-
-    public Account(Locale locale) {
-        currency = Currency.getInstance(locale);
+    public Account(Currencies currency) {
+        this.currency = new Currency(currency);
         balance = new BigDecimal(0);
     }
 
@@ -39,6 +32,6 @@ public class Account implements Serializable {
     }
 
     public String getBalanceWithCurrency() {
-        return balance.toString() + currency.getCurrencyCode();
+        return balance.toString() + currency.getSymbol();
     }
 }

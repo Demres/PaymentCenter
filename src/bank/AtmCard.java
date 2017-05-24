@@ -6,7 +6,7 @@ import java.util.Locale;
 
 public class AtmCard extends DebitCard implements Serializable {
 
-    public AtmCard(Locale locale, int prefix) {
-        super(locale, prefix);
+    public AtmCard(Currencies currency, int bankPrefix) {
+        super(currency, bankPrefix);
     }
 }

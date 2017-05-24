@@ -23,18 +23,11 @@ public class Transaction implements Serializable {
 
     public String getFormattedDateAndTime() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        return dateFormat.format(date);
-    }
-
-    public void setDate(GregorianCalendar date) {
-        this.date = date;
+        return dateFormat.format(date.getTime());
     }
 
     public BigDecimal getRequestedMoney() {
         return requestedMoney;
-    }
-
-    public Transaction() {
     }
 
     public Transaction(BigDecimal requestedMoney, RecipientOfService requester) {

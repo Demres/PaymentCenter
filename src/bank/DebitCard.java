@@ -13,13 +13,9 @@ public class DebitCard extends Card implements Serializable {
 
     private Account account;
 
-    public DebitCard(Locale locale, int prefix) {
-        super(prefix);
-        account = new Account(locale);
-    }
-
-    public DebitCard(int prefix) {
-        this(new Locale("pl_PL"), prefix);
+    public DebitCard(Currencies currency, int bankPrefix) {
+        super(bankPrefix);
+        account = new Account(currency);
     }
 
     @Override

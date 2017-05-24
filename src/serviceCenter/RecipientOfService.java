@@ -1,12 +1,18 @@
 package serviceCenter;
 
 
-public abstract class RecipientOfService {
+import java.io.Serializable;
+
+public abstract class RecipientOfService implements Serializable {
 
     private String name;
     private int recipientId;
 
     private static int nextRecipientId = 1;
+
+    public String getName() {
+        return name;
+    }
 
     public RecipientOfService(String name) {
         this.name = name;

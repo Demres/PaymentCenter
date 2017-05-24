@@ -13,9 +13,9 @@ public class CreditCard extends Card implements Serializable {
 
     private Loan loan;
 
-    public CreditCard(Locale locale, int prefix) {
+    public CreditCard(Currencies currency, int prefix) {
         super(prefix);
-        loan = new Loan(locale, new BigDecimal(5000));
+        loan = new Loan(new BigDecimal(5000), currency);
     }
 
     public void setLoan(BigDecimal loan) {

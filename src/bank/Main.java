@@ -1,57 +1,52 @@
 package bank;
 
 import exceptions.AccountBalanceException;
+import serviceCenter.RecipientOfService;
+import serviceCenter.Shop;
 import serviceCenter.Transaction;
 
 import java.io.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Locale;
 
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        /*
-        Customer customer = new Customer("Andy", "McDonald");
-        DebitCard debitcard = new DebitCard(Locale.US);
-        debitcard.deposit(new BigDecimal("1234.60"));
-        System.out.println(debitcard.getBalanceWithCurrency());
+        /*Customer customer = new Customer("Kamil", "Domurat", "97082101851");
+        DebitCard debitcard = new DebitCard(Currencies.PLN, 1000);
+        debitcard.deposit(new BigDecimal("2000.40"));
+        customer.addCard(debitcard);
+        RecipientOfService shop = new Shop("Sexshop");
         try {
-            debitcard.charge(new BigDecimal("65.50"));
-            debitcard.charge(new BigDecimal("6500.50"));
+            debitcard.charge(new BigDecimal("1000"), shop);
         }
         catch (AccountBalanceException e) {
-            System.out.println("fucked up");
-           // e.printStackTrace();
+            e.printStackTrace();
         }
-        System.out.println(debitcard.getBalanceWithCurrency());
-        ArrayList<Transaction> list = debitcard.getTransactions();
-        for (Transaction t : list) {
-            System.out.println(t.getRequestedMoney());
-        }
-        customer.addCard(debitcard);
 
-        FileOutputStream fout = new FileOutputStream("/home/kamil/Projects/Java/CardServiceCenter/object.ser");
+       *//* ArrayList<Transaction> transactions = customer.getCards().get(0).getTransactions();
+        System.out.println(transactions.get(0).getFormattedDateAndTime());*//*
+
+        FileOutputStream fout = new FileOutputStream("/home/kamil/Projects/Java/CardServiceCenter/app.state");
         ObjectOutputStream oos = new ObjectOutputStream(fout);
-        oos.writeObject(customer);
+        oos.writeObject(customer);*/
 
-
-        FileInputStream fin = new FileInputStream("/home/kamil/Projects/Java/CardServiceCenter/object.ser");
+        FileInputStream fin = new FileInputStream("/home/kamil/Projects/Java/CardServiceCenter/app.state");
         ObjectInputStream ois = new ObjectInputStream(fin);
 
-        Customer customer;
+        Customer customer = null;
         try {
             customer = (Customer) ois.readObject();
-            Card card = customer.getCards().get(0);
-            for (Transaction t : card.getTransactions()) {
-                System.out.println(t.isPaymentRealised());
-            }
         }
         catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        */
+
+        assert customer != null;
+        ArrayList<Transaction> transactions = customer.getCards().get(0).getTransactions();
+        System.out.println(transactions.get(0).getFormattedDateAndTime());
+
 
     }
 }

@@ -1,7 +1,9 @@
 package serviceCenter;
 
 
-public class TransportCompany extends RecipientOfService {
+import java.io.Serializable;
+
+public class TransportCompany extends RecipientOfService implements Serializable {
     public TransportCompany(String name) {
         super(name);
     }
